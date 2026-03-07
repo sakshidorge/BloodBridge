@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Blood Bridge — India's trusted blood donor network. Connect donors with patients in need. Save lives across India.">
+<meta name="keywords" content="blood donation India, blood donor, blood bank, O positive, B positive, blood group, donate blood">
+<meta property="og:title" content="Blood Bridge — Bridge the Gap, Save a Life">
+<meta property="og:description" content="India's trusted blood donor network. Register as donor or request blood today.">
+<title>Blood Bridge — Bridge the Gap, Save a Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ============================================================
+   BLOOD BRIDGE — PRODUCTION STYLESHEET
+   ============================================================ */
+:root {
+  --red: #C0000A;
+  --red-dark: #8B0000;
+  --red-light: #FF2D3B;
+  --cream: #FFF8F0;
+  --warm: #FFF1E6;
+  --charcoal: #1A0A0A;
+  --gray: #5C5555;
+  --white: #FFFFFF;
+  --gold: #D4A853;
+  --success: #1A7A4A;
+  --urgent: #E03200;
+  --blue: #1565C0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  overflow-x: hidden;
+}
+h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:1000;
+  background: rgba(26,10,10,0.97);
+  backdrop-filter: blur(14px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 68px;
+  border-bottom: 2px solid var(--red);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Playfair Display', serif;
+  color: #fff; font-size: 1.45rem; font-weight: 900;
+  text-decoration: none;
+}
+.logo-drop {
+  width: 34px; height: 34px; background: var(--red);
+  clip-path: polygon(50% 0%,85% 35%,100% 60%,78% 88%,50% 100%,22% 88%,0% 60%,15% 35%);
+  animation: heartbeat 2.2s ease infinite;
+}
+@keyframes heartbeat {
+  0%,100%{transform:scale(1)}
+  14%{transform:scale(1.13)}
+  28%{transform:scale(1)}
+  42%{transform:scale(1.08)}
+  70%{transform:scale(1)}
+}
+.nav-links { display:flex; gap:26px; list-style:none; }
+.nav-links a {
+  color: rgba(255,255,255,0.75); text-decoration:none;
+  font-size:0.88rem; font-weight:500; transition:color .2s;
+}
+.nav-links a:hover { color: var(--red-light); }
+.nav-btns { display:flex; gap:10px; }
+
+/* ── BUTTONS ── */
+.btn {
+  padding: 10px 22px; border-radius: 7px;
+  font-family: 'DM Sans', sans-serif; font-weight: 600;
+  font-size: 0.88rem; cursor: pointer; border: none;
+  text-decoration: none; display: inline-block;
+  transition: all .2s; letter-spacing: .2px;
+}
+.btn-primary { background: var(--red); color: #fff; }
+.btn-primary:hover { background: var(--red-light); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(192,0,10,.35); }
+.btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.35); }
+.btn-outline:hover { border-color: var(--red-light); color: var(--red-light); }
+.btn-gold { background: var(--gold); color: var(--charcoal); }
+.btn-gold:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-ghost { background: rgba(255,255,255,.07); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,.13); }
+.btn-success { background: var(--success); color: #fff; }
+.btn-lg { padding: 13px 30px; font-size: 0.95rem; }
+.btn-sm { padding: 6px 14px; font-size: 0.78rem; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(140deg, #0E0000 0%, #3A0010 45%, #1A050A 100%);
+  display: flex; align-items: center;
+  padding: 110px 60px 70px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C0000A' fill-opacity='.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content { position:relative; z-index:2; max-width:580px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(192,0,10,.18); border: 1px solid rgba(255,45,59,.35);
+  color: #FF7A84; padding: 6px 18px; border-radius: 100px;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 22px;
+}
+.hero h1 {
+  font-size: clamp(2.6rem,5vw,4.4rem);
+  color: #fff; line-height: 1.1; margin-bottom: 18px;
+}
+.hero h1 span { color: var(--red-light); }
+.hero p {
+  color: rgba(255,255,255,.65); font-size:1.05rem; line-height:1.75;
+  margin-bottom:34px; max-width:460px;
+}
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:48px; }
+.hero-stats { display:flex; gap:38px; }
+.hero-stat .num {
+  font-family:'Playfair Display',serif;
+  font-size:2rem; font-weight:700; color:var(--red-light); display:block;
+}
+.hero-stat .lbl { color:rgba(255,255,255,.45); font-size:0.8rem; }
+
+.hero-pills {
+  position:absolute; right:72px; top:50%;
+  transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:10px; z-index:2;
+}
+.hero-pill {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(192,0,10,.3);
+  border-radius:12px; padding:13px 18px;
+  display:flex; align-items:center; gap:14px;
+  backdrop-filter:blur(8px); min-width:210px;
+  animation: pillIn .5s ease both;
+}
+@keyframes pillIn {
+  from{opacity:0;transform:translateX(30px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.pill-name {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem; font-weight:700; color:#fff; min-width:38px;
+}
+.pill-bar-wrap { flex:1; height:5px; background:rgba(255,255,255,.1); border-radius:3px; overflow:hidden; }
+.pill-bar { height:100%; background:var(--red); border-radius:3px; }
+.pill-units { color:rgba(255,255,255,.55); font-size:0.78rem; white-space:nowrap; }
+
+/* ── SECTIONS ── */
+section { padding: 80px 60px; }
+.section-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--red); font-size:0.78rem; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; margin-bottom:10px;
+}
+.section-tag::before { content:''; width:22px; height:2px; background:var(--red); display:block; }
+.section-title { font-size:clamp(1.7rem,3vw,2.5rem); line-height:1.2; margin-bottom:8px; }
+.section-sub { color:var(--gray); font-size:.95rem; line-height:1.7; max-width:500px; }
+
+/* ── BLOOD AVAILABILITY ── */
+.availability { background:#fff; }
+.blood-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:44px;
+}
+.blood-card {
+  background:var(--cream); border-radius:14px;
+  border:2px solid transparent; padding:20px 16px; text-align:center;
+  cursor:pointer; transition:all .25s; position:relative; overflow:hidden;
+}
+.blood-card:hover { border-color:var(--red); transform:translateY(-4px); box-shadow:0 12px 32px rgba(192,0,10,.12); }
+.blood-card.critical { border-color:var(--urgent); }
+.blood-card.critical::after {
+  content:'CRITICAL';
+  position:absolute; top:10px; right:-18px;
+  background:var(--urgent); color:#fff; font-size:.58rem; font-weight:800;
+  padding:2px 22px; transform:rotate(45deg); letter-spacing:1px;
+}
+.bc-group { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--red); }
+.bc-units { font-size:1.5rem; font-weight:700; margin:4px 0; }
+.bc-label { font-size:.72rem; color:var(--gray); }
+.bc-status {
+  display:inline-block; padding:3px 10px; border-radius:100px;
+  font-size:.68rem; font-weight:700; margin-top:8px; letter-spacing:.5px;
+}
+.s-good { background:#E8F5E9; color:var(--success); }
+.s-low { background:#FFF3E0; color:#E65100; }
+.s-crit { background:#FFEBEE; color:var(--urgent); }
+
+.charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:40px; }
+.chart-card {
+  background:var(--cream); border:1px solid rgba(192,0,10,.1);
+  border-radius:16px; padding:28px;
+}
+.chart-card h3 { font-size:.95rem; font-weight:600; margin-bottom:18px; }
+
+/* ── HOW IT WORKS ── */
+.how { background:var(--charcoal); }
+.steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:52px; }
+.step-card {
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+  border-radius:16px; padding:30px 26px; position:relative;
+}
+.step-num {
+  font-family:'Playfair Display',serif; font-size:4rem; font-weight:900;
+  color:rgba(192,0,10,.18); position:absolute; top:12px; right:20px; line-height:1;
+}
+.step-icon {
+  width:50px; height:50px; border-radius:12px;
+  background:rgba(192,0,10,.13); border:1px solid rgba(192,0,10,.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; margin-bottom:18px;
+}
+.step-card h3 { color:#fff; font-size:1.05rem; margin-bottom:8px; }
+.step-card p { color:rgba(255,255,255,.48); font-size:.88rem; line-height:1.65; }
+
+/* ── QUOTES ── */
+.quotes-section { background: var(--warm); }
+.quotes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:44px; }
+.quote-card {
+  background:#fff; border-radius:16px; padding:28px;
+  border-top:3px solid var(--red);
+  box-shadow:0 2px 14px rgba(0,0,0,.05);
+}
+.quote-text {
+  font-family:'Playfair Display',serif; font-style:italic;
+  font-size:1.05rem; color:var(--charcoal); line-height:1.65; margin-bottom:18px;
+}
+.quote-text::before { content:'\201C'; font-size:2rem; color:var(--red); line-height:0; vertical-align:-.4rem; margin-right:4px; }
+.quote-author { font-size:.82rem; font-weight:600; color:var(--gray); }
+.quote-author span { color:var(--red); }
+
+/* ── ACTIVE REQUESTS ── */
+.requests { background:var(--warm); }
+.requests-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:44px; }
+.req-card {
+  background:#fff; border-radius:14px; padding:20px 22px;
+  border-left:4px solid var(--red);
+  display:flex; gap:18px; align-items:flex-start;
+  box-shadow:0 2px 12px rgba(0,0,0,.05); transition:box-shadow .2s;
+}
+.req-card:hover { box-shadow:0 8px 28px rgba(192,0,10,.1); }
+.req-card.urgent { border-left-color:var(--urgent); }
+.req-blood {
+  min-width:58px; height:58px; border-radius:12px;
+  background:var(--red); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:900;
+}
+.req-card.urgent .req-blood { background:var(--urgent); }
+.req-info h4 { font-size:.95rem; font-weight:600; margin-bottom:3px; }
+.req-meta { font-size:.8rem; color:var(--gray); margin-bottom:8px; }
+.req-meta span { margin-right:10px; }
+.req-tags { display:flex; gap:7px; flex-wrap:wrap; }
+.tag {
+  padding:3px 9px; border-radius:100px; font-size:.7rem; font-weight:700;
+}
+.t-urgent { background:#FFEBE6; color:var(--urgent); }
+.t-normal { background:#E8F5E9; color:var(--success); }
+.t-hospital { background:#EDE7F6; color:#5E35B1; }
+.t-city { background:#E3F2FD; color:var(--blue); }
+.t-fulfilled { background:#E8F5E9; color:var(--success); }
+
+/* ── PLEDGE WALL ── */
+.pledges { background:#fff; }
+.pledge-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:44px; }
+.pledge-card {
+  border:1.5px solid rgba(192,0,10,.15); border-radius:16px; padding:22px;
+  background:var(--cream); transition:all .25s;
+}
+.pledge-card:hover { border-color:var(--red); box-shadow:0 8px 24px rgba(192,0,10,.1); }
+.pledge-header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.pledge-av {
+  width:44px; height:44px; border-radius:50%;
+  background:var(--red); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;
+}
+.pledge-name { font-weight:600; font-size:.92rem; }
+.pledge-city { font-size:.78rem; color:var(--gray); }
+.pledge-bg {
+  margin-left:auto; background:var(--red); color:#fff;
+  padding:4px 11px; border-radius:100px;
+  font-family:'Playfair Display',serif; font-weight:700; font-size:.9rem;
+}
+.pledge-msg { font-size:.86rem; color:var(--gray); line-height:1.6; font-style:italic; }
+.pledge-footer { display:flex; justify-content:space-between; align-items:center; margin-top:12px; }
+.pledge-date { font-size:.72rem; color:rgba(92,85,85,.55); }
+.pledge-donated { font-size:.72rem; color:var(--red); font-weight:700; }
+
+/* ── MAP ── */
+.map-sec { background:var(--charcoal); }
+.map-layout { display:grid; grid-template-columns:1fr 300px; gap:24px; margin-top:44px; }
+.map-embed { border-radius:16px; overflow:hidden; height:440px; border:2px solid rgba(192,0,10,.3); }
+.map-embed iframe { width:100%; height:100%; border:none; filter:saturate(0.8); }
+.map-sidebar { display:flex; flex-direction:column; gap:10px; overflow-y:auto; max-height:440px; }
+.map-sidebar::-webkit-scrollbar { width:4px; }
+.map-sidebar::-webkit-scrollbar-thumb { background:rgba(192,0,10,.4); border-radius:2px; }
+.mdc {
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.07);
+  border-radius:11px; padding:13px 15px;
+  display:flex; gap:11px; align-items:center;
+  cursor:pointer; transition:background .2s;
+}
+.mdc:hover { background:rgba(192,0,10,.1); border-color:rgba(192,0,10,.4); }
+.mdc-blood {
+  width:38px; height:38px; border-radius:8px; background:var(--red);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; color:#fff; font-weight:700; font-size:.82rem; flex-shrink:0;
+}
+.mdc-name { font-weight:600; font-size:.85rem; color:#fff; }
+.mdc-city { font-size:.75rem; color:rgba(255,255,255,.45); }
+.mdc-badge { margin-left:auto; font-size:.68rem; padding:3px 8px; border-radius:100px; font-weight:600; white-space:nowrap; }
+.b-avail { background:rgba(26,122,74,.3); color:#66BB6A; }
+.b-cool { background:rgba(255,152,0,.2); color:#FFB74D; }
+
+/* ── FORMS ── */
+.forms-sec { background:var(--warm); }
+.forms-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:44px; }
+.form-card {
+  background:#fff; border-radius:20px; padding:34px;
+  box-shadow:0 4px 22px rgba(0,0,0,.06);
+  border-top:4px solid var(--red);
+}
+.form-card.request-form { border-top-color:var(--urgent); }
+.form-card h3 { font-size:1.25rem; margin-bottom:5px; }
+.form-desc { font-size:.85rem; color:var(--gray); margin-bottom:24px; }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; font-size:.8rem; font-weight:600; color:var(--charcoal); margin-bottom:5px; }
+.form-group input,.form-group select,.form-group textarea {
+  width:100%; padding:10px 13px; border:1.5px solid rgba(0,0,0,.12);
+  border-radius:8px; font-family:'DM Sans',sans-serif; font-size:.88rem;
+  background:var(--cream); transition:border-color .2s; color:var(--charcoal);
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus {
+  outline:none; border-color:var(--red); background:#fff;
+}
+.form-group textarea { resize:vertical; min-height:75px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+
+/* ── ABOUT ── */
+.about-sec { background:#fff; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-top:44px; }
+.about-img-wrap {
+  background: linear-gradient(135deg, var(--charcoal), #3A0010);
+  border-radius:20px; padding:40px; text-align:center; position:relative; overflow:hidden;
+}
+.about-img-wrap::before {
+  content:'🩸';
+  font-size:8rem; position:absolute; opacity:.06; top:-10px; right:-10px;
+}
+.about-big-stat {
+  font-family:'Playfair Display',serif; font-size:5rem; font-weight:900;
+  color:var(--red-light); line-height:1;
+}
+.about-big-label { color:rgba(255,255,255,.6); font-size:.95rem; margin-top:6px; }
+.about-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; }
+.about-mini {
+  background:rgba(255,255,255,.07); border-radius:10px; padding:14px;
+}
+.about-mini .v { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--red-light); }
+.about-mini .l { font-size:.78rem; color:rgba(255,255,255,.5); margin-top:2px; }
+.about-text h2 { font-size:2.2rem; margin-bottom:14px; }
+.about-text p { color:var(--gray); font-size:.95rem; line-height:1.75; margin-bottom:16px; }
+.about-facts { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
+.fact-item { display:flex; align-items:flex-start; gap:10px; }
+.fact-icon { font-size:1.2rem; margin-top:2px; }
+.fact-text { font-size:.85rem; color:var(--gray); line-height:1.55; }
+.fact-text strong { color:var(--charcoal); }
+
+/* ── WHATSAPP SECTION ── */
+.wa-sec {
+  background:#064E40; padding:60px;
+  display:flex; align-items:center; justify-content:space-between; gap:32px;
+}
+.wa-content h2 { color:#fff; font-size:1.8rem; margin-bottom:8px; }
+.wa-content p { color:rgba(255,255,255,.7); font-size:.92rem; }
+.wa-btn {
+  background:#25D366; color:#fff; border:none;
+  padding:14px 32px; border-radius:50px; font-family:'DM Sans',sans-serif;
+  font-size:.98rem; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; gap:10px; white-space:nowrap;
+  text-decoration:none; transition:all .2s; flex-shrink:0;
+}
+.wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(37,211,102,.4); }
+
+/* ── FOOTER ── */
+footer { background:var(--charcoal); padding:56px 60px 28px; border-top:3px solid var(--red); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+.footer-brand h3 { color:#fff; font-size:1.3rem; margin-bottom:10px; }
+.footer-brand p { color:rgba(255,255,255,.38); font-size:.85rem; line-height:1.7; }
+.footer-brand .helpline { color:var(--red-light); font-weight:700; font-size:.95rem; margin-top:14px; display:block; }
+.footer-col h4 { color:#fff; font-size:.82rem; font-weight:600; margin-bottom:13px; letter-spacing:.5px; }
+.footer-col a { display:block; color:rgba(255,255,255,.38); text-decoration:none; font-size:.83rem; margin-bottom:7px; transition:color .2s; }
+.footer-col a:hover { color:var(--red-light); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,.06); padding-top:22px; display:flex; justify-content:space-between; align-items:center; }
+.footer-bottom p { color:rgba(255,255,255,.28); font-size:.78rem; }
+.disclaimer { font-size:.72rem; color:rgba(255,255,255,.22); margin-top:6px; }
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position:fixed; bottom:28px; right:28px; z-index:999;
+  width:56px; height:56px; border-radius:50%;
+  background:#25D366; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; box-shadow:0 4px 18px rgba(37,211,102,.5);
+  cursor:pointer; border:none; animation:waPulse 3s ease infinite;
+  text-decoration:none;
+}
+@keyframes waPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.07)} }
+
+/* ── TOAST ── */
+.toast {
+  position:fixed; bottom:96px; right:28px; z-index:9998;
+  background:#1A1A24; color:#fff; padding:14px 18px;
+  border-radius:10px; border-left:4px solid var(--success);
+  font-size:.85rem; max-width:300px;
+  transform:translateX(120%); transition:transform .3s ease;
+  box-shadow:0 8px 24px rgba(0,0,0,.3); line-height:1.5;
+}
+.toast.show { transform:translateX(0); }
+.toast.error { border-left-color:var(--urgent); }
+
+/* ============================================================
+   ADMIN DASHBOARD
+   ============================================================ */
+.admin-page {
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:#0C0C12; overflow-y:auto;
+}
+.admin-page.open { display:block; }
+
+/* Admin Header */
+.admin-hdr {
+  background:#141420; border-bottom:1px solid rgba(255,255,255,.06);
+  padding:0 32px; height:62px;
+  display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:100;
+}
+.admin-logo {
+  font-family:'Playfair Display',serif; color:#fff; font-size:1.15rem;
+  display:flex; align-items:center; gap:10px;
+}
+.admin-dot { width:9px; height:9px; background:var(--red); border-radius:50%; animation:heartbeat 2.2s infinite; }
+.admin-nav-tabs { display:flex; gap:4px; }
+.atab {
+  background:none; border:none; color:rgba(255,255,255,.45);
+  padding:7px 16px; border-radius:8px; cursor:pointer;
+  font-family:'DM Sans',sans-serif; font-size:.85rem; font-weight:500;
+  transition:all .2s; position:relative;
+}
+.atab.active,.atab:hover { background:rgba(192,0,10,.15); color:var(--red-light); }
+.notif-badge {
+  position:absolute; top:4px; right:8px;
+  width:18px; height:18px; border-radius:50%;
+  background:var(--urgent); color:#fff;
+  font-size:.6rem; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  display:none;
+}
+.notif-badge.visible { display:flex; }
+.admin-hdr-right { display:flex; gap:10px; align-items:center; }
+.admin-time { color:rgba(255,255,255,.35); font-size:.78rem; }
+
+/* Admin Body */
+.admin-body { padding:28px 32px; }
+.admin-panel { display:none; }
+.admin-panel.active { display:block; }
+
+/* Stat Cards */
+.admin-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:28px; }
+.asc {
+  background:#141420; border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:20px 22px;
+}
+.asc .lbl { font-size:.72rem; color:rgba(255,255,255,.35); margin-bottom:7px; text-transform:uppercase; letter-spacing:.6px; }
+.asc .val { font-family:'Playfair Display',serif; font-size:2.1rem; font-weight:700; color:#fff; }
+.asc .chg { font-size:.75rem; margin-top:4px; }
+.chg-up { color:#66BB6A; }
+.chg-down { color:var(--urgent); }
+
+/* Notification Bell Panel */
+.notif-panel {
+  background:#141420; border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:22px; margin-bottom:24px;
+  display:none;
+}
+.notif-panel.has-notifs { display:block; }
+.notif-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.notif-hdr h3 { color:#fff; font-size:.95rem; font-weight:600; }
+.notif-hdr span { font-size:.78rem; color:rgba(255,255,255,.35); }
+.notif-list { display:flex; flex-direction:column; gap:10px; }
+.notif-item {
+  background:rgba(192,0,10,.1); border:1px solid rgba(192,0,10,.25);
+  border-radius:10px; padding:12px 16px;
+  display:flex; align-items:center; gap:14px;
+}
+.notif-item.new { border-color:rgba(255,45,59,.5); background:rgba(255,45,59,.08); }
+.notif-dot { width:8px; height:8px; border-radius:50%; background:var(--red-light); flex-shrink:0; animation:heartbeat 1.5s infinite; }
+.notif-text { flex:1; }
+.notif-text strong { color:#fff; font-size:.85rem; display:block; }
+.notif-text span { color:rgba(255,255,255,.45); font-size:.78rem; }
+.notif-time { color:rgba(255,255,255,.3); font-size:.72rem; white-space:nowrap; }
+.notif-dismiss {
+  background:rgba(255,255,255,.06); border:none; color:rgba(255,255,255,.4);
+  width:24px; height:24px; border-radius:6px; cursor:pointer; font-size:.8rem;
+}
+
+/* Admin Cards */
+.admin-2col { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:22px; }
+.admin-full { margin-bottom:22px; }
+.admin-card {
+  background:#141420; border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:22px;
+}
+.admin-card h3 { color:#fff; font-size:.95rem; font-weight:600; margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+
+/* Table */
+.tbl-wrap { overflow-x:auto; }
+.dtbl { width:100%; border-collapse:collapse; }
+.dtbl th {
+  text-align:left; font-size:.72rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.8px; color:rgba(255,255,255,.3); padding:9px 13px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.dtbl td {
+  padding:11px 13px; font-size:.85rem; color:rgba(255,255,255,.75);
+  border-bottom:1px solid rgba(255,255,255,.04); vertical-align:middle;
+}
+.dtbl tr:hover td { background:rgba(255,255,255,.02); }
+.td-blood { font-family:'Playfair Display',serif; font-weight:700; color:var(--red-light); font-size:.95rem; }
+.td-name { font-weight:600; color:#fff; }
+.tdg { display:inline-block; padding:3px 9px; border-radius:100px; font-size:.7rem; font-weight:700; }
+.tdg-active { background:rgba(26,122,74,.25); color:#66BB6A; }
+.tdg-pending { background:rgba(255,152,0,.2); color:#FFB74D; }
+.tdg-fulfilled { background:rgba(33,150,243,.2); color:#64B5F6; }
+.tdg-urgent { background:rgba(224,50,0,.25); color:#FF8A65; }
+.act-btn {
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.65); padding:4px 11px; border-radius:6px;
+  cursor:pointer; font-size:.75rem; font-family:'DM Sans',sans-serif;
+  transition:all .2s; margin-right:4px;
+}
+.act-btn:hover { background:rgba(192,0,10,.2); border-color:var(--red); color:var(--red-light); }
+
+/* Admin Chart area */
+.admin-chart-wrap { height:240px; position:relative; }
+
+/* Donor Modal */
+.modal-bg {
+  position:fixed; inset:0; background:rgba(0,0,0,.85);
+  z-index:10001; display:none; align-items:center; justify-content:center; padding:20px;
+}
+.modal-bg.open { display:flex; }
+.modal {
+  background:#1A1A28; border:1px solid rgba(255,255,255,.1);
+  border-radius:20px; width:100%; max-width:660px;
+  max-height:88vh; overflow-y:auto; padding:34px;
+}
+.modal::-webkit-scrollbar { width:4px; }
+.modal::-webkit-scrollbar-thumb { background:rgba(192,0,10,.5); border-radius:2px; }
+.modal-hdr { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:26px; }
+.modal-title { font-family:'Playfair Display',serif; color:#fff; font-size:1.4rem; }
+.modal-close {
+  background:rgba(255,255,255,.08); border:none; color:#fff;
+  width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:1rem;
+}
+.donor-profile { display:flex; gap:18px; margin-bottom:24px; }
+.d-av-lg {
+  width:68px; height:68px; border-radius:50%;
+  background:var(--red); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:700; flex-shrink:0;
+}
+.d-profile-info h3 { color:#fff; font-size:1.15rem; margin-bottom:5px; }
+.d-profile-info .meta { color:rgba(255,255,255,.45); font-size:.83rem; margin-bottom:9px; }
+.d-tags { display:flex; gap:7px; flex-wrap:wrap; }
+.d-tag { padding:3px 11px; border-radius:100px; font-size:.72rem; font-weight:700; background:rgba(192,0,10,.2); color:var(--red-light); }
+.detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px; }
+.di { background:rgba(255,255,255,.04); border-radius:10px; padding:13px 15px; }
+.di .k { font-size:.68rem; color:rgba(255,255,255,.3); margin-bottom:3px; text-transform:uppercase; letter-spacing:.5px; }
+.di .v { color:#fff; font-size:.88rem; font-weight:500; }
+.history-title { color:#fff; font-size:.92rem; font-weight:600; margin-bottom:14px; }
+.timeline { padding-left:18px; position:relative; }
+.timeline::before { content:''; position:absolute; left:6px; top:0; bottom:0; width:2px; background:rgba(255,255,255,.07); }
+.tl-item { position:relative; margin-bottom:16px; }
+.tl-item::before { content:''; position:absolute; left:-15px; top:5px; width:9px; height:9px; border-radius:50%; background:var(--red); }
+.tl-item h4 { color:#fff; font-size:.85rem; font-weight:600; }
+.tl-item p { color:rgba(255,255,255,.45); font-size:.78rem; margin-top:2px; }
+
+/* Scrollbar global */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--charcoal); }
+::-webkit-scrollbar-thumb { background:var(--red-dark); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="logo-drop"></div>
+    Blood Bridge
+  </a>
+  <ul class="nav-links">
+    <li><a href="#availability">Blood Stock</a></li>
+    <li><a href="#requests">Requests</a></li>
+    <li><a href="#donors">Donors</a></li>
+    <li><a href="#map">Find Donor</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#forms">Register</a></li>
+  </ul>
+  <div class="nav-btns">
+    <a href="#forms" class="btn btn-outline">Donate Blood</a>
+    <button class="btn btn-primary" onclick="openAdmin()">Admin Dashboard</button>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">🩸 India's Trusted Blood Donor Network</div>
+    <h1>Bridge the Gap,<br><span>Save a Life.</span></h1>
+    <p>Connecting blood donors with patients in need across 28+ Indian cities. Every unit counts — your one donation can save up to three lives.</p>
+    <div class="hero-btns">
+      <a href="#forms" class="btn btn-primary btn-lg">Become a Donor</a>
+      <a href="#forms" class="btn btn-gold btn-lg">Request Blood</a>
+      <a href="#availability" class="btn btn-outline btn-lg">Check Availability</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num" id="counterDonors">0</span><span class="lbl">Registered Donors</span></div>
+      <div class="hero-stat"><span class="num" id="counterLives">0</span><span class="lbl">Lives Saved</span></div>
+      <div class="hero-stat"><span class="num" id="counterCities">0</span><span class="lbl">Cities Covered</span></div>
+    </div>
+  </div>
+  <div class="hero-pills" id="heroPills"></div>
+</section>
+
+<!-- ════════════════ BLOOD AVAILABILITY ════════════════ -->
+<section class="availability" id="availability">
+  <div class="section-tag">Live Blood Stock</div>
+  <h2 class="section-title">Current Blood Availability</h2>
+  <p class="section-sub">Live overview of blood units across our partner blood banks in India. Updated every 6 hours. Contact us if your group is critical.</p>
+  <div class="blood-grid" id="bloodGrid"></div>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>📊 Units Available by Blood Group</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>🩸 Donor Distribution by Blood Group</h3>
+      <canvas id="donutChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ HOW IT WORKS ════════════════ -->
+<section class="how">
+  <div class="section-tag" style="color:var(--red-light)">Process</div>
+  <h2 class="section-title" style="color:#fff">How Blood Bridge Works</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.5)">Simple, transparent, and life-saving — from registration to saving a life in three easy steps.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">📝</div>
+      <h3>Register as Donor</h3>
+      <p>Fill your blood group, city, and contact details. Your data is secure and only shared when there's an urgent match in your area.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">🔔</div>
+      <h3>Get Matched & Notified</h3>
+      <p>When someone nearby needs your blood group, you'll be notified on WhatsApp. You confirm availability at your convenience.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">🏥</div>
+      <h3>Donate & Save a Life</h3>
+      <p>Visit the blood bank or hospital, donate safely. You can donate every 3 months. A certificate is provided for every donation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ QUOTES ════════════════ -->
+<section class="quotes-section" id="quotes">
+  <div class="section-tag">Inspiration</div>
+  <h2 class="section-title">Words That Move Us</h2>
+  <p class="section-sub">Quotes from leaders, doctors, and everyday heroes who remind us why every drop matters.</p>
+  <div class="quotes-grid">
+    <div class="quote-card">
+      <p class="quote-text">The gift of blood is the gift of life. There is no greater present you can give to someone than to save their life.</p>
+      <div class="quote-author">— <span>World Health Organization</span></div>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">Donating blood is the most precious gift you can give to another human being — the gift of life. It costs you nothing but a few minutes of your time.</p>
+      <div class="quote-author">— <span>Dr. A.P.J. Abdul Kalam</span>, Former President of India</div>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">Blood has no caste, no religion, no colour. When you donate, you save a life — and that life could be anyone's mother, child, or friend.</p>
+      <div class="quote-author">— <span>Indian Red Cross Society</span></div>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">Every second, someone in India needs blood. You could be the bridge between life and death for a stranger today.</p>
+      <div class="quote-author">— <span>Blood Bridge Foundation</span></div>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">Ek boond khoon se jeewan milta hai. Aao milkar khoon daan karein aur kai zindagiyon ko roshan karein.</p>
+      <div class="quote-author">— <span>Hindi Proverb</span> (A drop of blood gives life)</div>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">In India, nearly 12,000 people die every day due to shortage of blood. You have the power to change that — one donation at a time.</p>
+      <div class="quote-author">— <span>National Blood Transfusion Council</span>, India</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ACTIVE REQUESTS ════════════════ -->
+<section class="requests" id="requests">
+  <div class="section-tag">Urgent Needs</div>
+  <h2 class="section-title">Active Blood Requests</h2>
+  <p class="section-sub">Real requests from patients across India. If your blood group matches, please reach out or register as a donor today.</p>
+  <div class="requests-grid" id="requestsGrid"></div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="#forms" class="btn btn-primary btn-lg">Raise a Blood Request</a>
+  </div>
+</section>
+
+<!-- ════════════════ PLEDGE WALL ════════════════ -->
+<section class="pledges" id="donors">
+  <div class="section-tag">Our Heroes</div>
+  <h2 class="section-title">Donors Ready to Help</h2>
+  <p class="section-sub">These incredible individuals have pledged to donate anytime. Join them — every pledge can save a life.</p>
+  <div class="pledge-grid" id="pledgeGrid"></div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="#forms" class="btn btn-primary btn-lg">Pledge to Donate</a>
+  </div>
+</section>
+
+<!-- ════════════════ MAP ════════════════ -->
+<section class="map-sec" id="map">
+  <div class="section-tag" style="color:var(--red-light)">Find Donors</div>
+  <h2 class="section-title" style="color:#fff">Donor Locations Across India</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.5)">Our donors are spread across major cities. Use the map to find a donor nearest to your hospital or patient location.</p>
+  <div class="map-layout">
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15280711.644978843!2d68.12775749999999!3d20.593684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1712000000000!5m2!1sen!2sin"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="map-sidebar" id="mapSidebar"></div>
+  </div>
+</section>
+
+<!-- ════════════════ FORMS ════════════════ -->
+<section class="forms-sec" id="forms">
+  <div class="section-tag">Take Action</div>
+  <h2 class="section-title">Register or Request Blood</h2>
+  <p class="section-sub">Join thousands of donors saving lives, or raise a blood request for someone in need. Every action matters.</p>
+  <div class="forms-grid">
+
+    <!-- DONOR REGISTRATION -->
+    <div class="form-card">
+      <h3>🩸 Register as Donor</h3>
+      <p class="form-desc">Sign up as a blood donor. You will be contacted only when your blood group is urgently needed near you.</p>
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="dName" placeholder="e.g. Rahul Sharma" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Age *</label>
+          <input type="number" id="dAge" placeholder="e.g. 28" min="18" max="65">
+        </div>
+        <div class="form-group">
+          <label>Blood Group *</label>
+          <select id="dBlood">
+            <option value="">Select</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option>
+            <option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City *</label>
+          <input type="text" id="dCity" placeholder="e.g. Pune">
+        </div>
+        <div class="form-group">
+          <label>State *</label>
+          <select id="dState">
+            <option value="">Select State</option>
+            <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option>
+            <option>Tamil Nadu</option><option>Telangana</option><option>West Bengal</option>
+            <option>Gujarat</option><option>Rajasthan</option><option>Uttar Pradesh</option>
+            <option>Punjab</option><option>Kerala</option><option>Madhya Pradesh</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Mobile Number (WhatsApp) *</label>
+        <input type="tel" id="dPhone" placeholder="+91 98765 43210">
+      </div>
+      <div class="form-group">
+        <label>Last Donation Date (if any)</label>
+        <input type="date" id="dLastDonation">
+      </div>
+      <div class="form-group">
+        <label>Pledge Message (optional)</label>
+        <textarea id="dPledge" placeholder="e.g. I am always ready to donate O+ blood anytime. Please contact me."></textarea>
+      </div>
+      <button class="btn btn-primary w-full" style="width:100%;padding:12px" onclick="registerDonor()">✅ Register as Donor</button>
+    </div>
+
+    <!-- BLOOD REQUEST -->
+    <div class="form-card request-form">
+      <h3>🚨 Raise a Blood Request</h3>
+      <p class="form-desc">Need blood urgently? Submit a request and our admin will match you with the nearest available donor immediately.</p>
+      <div class="form-group">
+        <label>Patient Name *</label>
+        <input type="text" id="rName" placeholder="e.g. Priya Patel">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Blood Group Required *</label>
+          <select id="rBlood">
+            <option value="">Select</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option>
+            <option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Units Required *</label>
+          <input type="number" id="rUnits" placeholder="e.g. 2" min="1" max="10">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Hospital / Blood Bank *</label>
+        <input type="text" id="rHospital" placeholder="e.g. AIIMS Delhi, Kokilaben Hospital">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>City *</label>
+          <input type="text" id="rCity" placeholder="e.g. Mumbai">
+        </div>
+        <div class="form-group">
+          <label>Urgency *</label>
+          <select id="rUrgency">
+            <option value="urgent">🚨 Urgent (within hours)</option>
+            <option value="normal">📅 Normal (within days)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Contact Number *</label>
+        <input type="tel" id="rPhone" placeholder="+91 98765 43210">
+      </div>
+      <div class="form-group">
+        <label>Additional Details</label>
+        <textarea id="rDetails" placeholder="Patient condition, doctor name, any additional info..."></textarea>
+      </div>
+      <button class="btn btn-primary w-full" style="width:100%;padding:12px;background:var(--urgent)" onclick="raiseRequest()">🚨 Submit Blood Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section class="about-sec" id="about">
+  <div class="section-tag">About Us</div>
+  <h2 class="section-title">Who We Are</h2>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-big-stat">3,200+</div>
+      <div class="about-big-label">Lives saved through Blood Bridge</div>
+      <div class="about-grid2">
+        <div class="about-mini"><div class="v">12,480</div><div class="l">Registered Donors</div></div>
+        <div class="about-mini"><div class="v">28</div><div class="l">Cities Covered</div></div>
+        <div class="about-mini"><div class="v">4.8★</div><div class="l">Donor Rating</div></div>
+        <div class="about-mini"><div class="v">100%</div><div class="l">Free Service</div></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <h2>India's Most Trusted Blood Donor Platform</h2>
+      <p>Blood Bridge was founded in 2019 by a group of IIT Bombay alumni who lost a family member due to blood unavailability. Determined to bridge this gap, they built India's first community-driven blood donor network.</p>
+      <p>We operate across 28 Indian cities, connecting verified blood donors with patients, hospitals, and blood banks. Our network is completely free — no commissions, no charges, no middlemen.</p>
+      <p>We are registered under the Ministry of Health & Family Welfare, Government of India, and comply with all National Blood Transfusion Council (NBTC) guidelines.</p>
+      <div class="about-facts">
+        <div class="fact-item"><div class="fact-icon">🏛️</div><div class="fact-text"><strong>Government Registered</strong><br>Ministry of Health & Family Welfare, GoI</div></div>
+        <div class="fact-item"><div class="fact-icon">🔒</div><div class="fact-text"><strong>Data Privacy</strong><br>Your info is never sold or misused</div></div>
+        <div class="fact-item"><div class="fact-icon">⚡</div><div class="fact-text"><strong>24×7 Support</strong><br>Helpline active day and night</div></div>
+        <div class="fact-item"><div class="fact-icon">🆓</div><div class="fact-text"><strong>Always Free</strong><br>No hidden charges, ever</div></div>
+        <div class="fact-item"><div class="fact-icon">🏥</div><div class="fact-text"><strong>Hospital Partners</strong><br>Tied up with 200+ hospitals</div></div>
+        <div class="fact-item"><div class="fact-icon">🇮🇳</div><div class="fact-text"><strong>Made in India</strong><br>Built for Bharat, by Indians</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ WHATSAPP SECTION ════════════════ -->
+<div class="wa-sec">
+  <div class="wa-content">
+    <h2>💬 Connect on WhatsApp</h2>
+    <p>Have an emergency? Need to find a donor fast? Message us directly on WhatsApp — our team responds within minutes, 24×7.</p>
+  </div>
+  <a href="https://wa.me/919876543210?text=Hello%20Blood%20Bridge%2C%20I%20need%20help%20with%20blood%20availability." target="_blank" class="wa-btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chat on WhatsApp
+  </a>
+</div>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>🩸 Blood Bridge</h3>
+      <p>India's most trusted community blood donor network. Bridging the gap between donors and patients since 2019. Free, fast, and life-saving.</p>
+      <span class="helpline">📞 Helpline: 1800-XXX-BLOOD (24×7)</span>
+      <span class="helpline" style="margin-top:4px;display:block;font-size:.8rem;color:rgba(255,255,255,.4)">📧 help@bloodbridge.in</span>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#availability">Blood Availability</a>
+      <a href="#requests">Active Requests</a>
+      <a href="#donors">Donor Wall</a>
+      <a href="#map">Find Donor</a>
+      <a href="#forms">Register</a>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <a href="#about">About Us</a>
+      <a href="#">Blood Types Guide</a>
+      <a href="#">Eligibility Criteria</a>
+      <a href="#">FAQs</a>
+      <a href="#">Partner Blood Banks</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal & Support</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Data Protection</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Report Issue</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <p>© 2025 Blood Bridge Foundation. All rights reserved. Registered under Ministry of Health & Family Welfare, GoI.</p>
+      <p class="disclaimer">Disclaimer: Blood Bridge is a community platform. We do not sell or supply blood commercially. Always consult a certified doctor before transfusion.</p>
+    </div>
+    <p style="color:rgba(255,255,255,.3);font-size:.78rem">Made with ❤️ in India 🇮🇳</p>
+  </div>
+</footer>
+
+<!-- ════════════════ WHATSAPP FLOAT ════════════════ -->
+<a class="wa-float" href="https://wa.me/919876543210?text=Hello%20Blood%20Bridge!" target="_blank" title="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ════════════════ TOAST ════════════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════ ADMIN DASHBOARD ════════════════ -->
+<div class="admin-page" id="adminPage">
+  <div class="admin-hdr">
+    <div class="admin-logo">
+      <div class="admin-dot"></div>
+      Blood Bridge — Admin Dashboard
+    </div>
+    <div class="admin-nav-tabs">
+      <button class="atab active" onclick="switchTab('overview',this)">Overview</button>
+      <button class="atab" onclick="switchTab('notifications',this)" id="notifTab">
+        🔔 Notifications
+        <span class="notif-badge" id="notifBadge">0</span>
+      </button>
+      <button class="atab" onclick="switchTab('donors',this)">All Donors</button>
+      <button class="atab" onclick="switchTab('adminRequests',this)">Blood Requests</button>
+    </div>
+    <div class="admin-hdr-right">
+      <span class="admin-time" id="adminClock"></span>
+      <button class="btn btn-ghost btn-sm" onclick="closeAdmin()">← Exit Admin</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- ── OVERVIEW PANEL ── -->
+    <div class="admin-panel active" id="panel-overview">
+      <div class="admin-stats">
+        <div class="asc"><div class="lbl">Total Donors</div><div class="val" id="aStat1">15</div><div class="chg chg-up">↑ +3 this week</div></div>
+        <div class="asc"><div class="lbl">Active Requests</div><div class="val" id="aStat2">8</div><div class="chg chg-down">↑ 2 urgent</div></div>
+        <div class="asc"><div class="lbl">Donations This Month</div><div class="val">47</div><div class="chg chg-up">↑ +12 vs last month</div></div>
+        <div class="asc"><div class="lbl">New Notifications</div><div class="val" id="aStat4">0</div><div class="chg chg-up">Pending review</div></div>
+      </div>
+
+      <!-- Notifications panel inline -->
+      <div class="notif-panel" id="overviewNotifPanel">
+        <div class="notif-hdr">
+          <h3>🔴 New Requests — Needs Attention</h3>
+          <span id="notifCountLabel">0 new notifications</span>
+        </div>
+        <div class="notif-list" id="overviewNotifList"></div>
+      </div>
+
+      <div class="admin-2col">
+        <div class="admin-card">
+          <h3>📊 Blood Stock Overview</h3>
+          <div class="admin-chart-wrap"><canvas id="adminBarChart"></canvas></div>
+        </div>
+        <div class="admin-card">
+          <h3>🩸 Donor Distribution</h3>
+          <div class="admin-chart-wrap"><canvas id="adminDonutChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="admin-card admin-full">
+        <h3>📋 Recent Donors (Last 5)</h3>
+        <div class="tbl-wrap"><table class="dtbl" id="recentDonorsTable"></table></div>
+      </div>
+    </div>
+
+    <!-- ── NOTIFICATIONS PANEL ── -->
+    <div class="admin-panel" id="panel-notifications">
+      <div class="admin-card">
+        <h3>🔔 All Notifications & Incoming Requests</h3>
+        <div class="notif-list" id="allNotifList" style="margin-top:0"></div>
+      </div>
+    </div>
+
+    <!-- ── DONORS PANEL ── -->
+    <div class="admin-panel" id="panel-donors">
+      <div class="admin-card admin-full">
+        <h3>👥 All Registered Donors</h3>
+        <div class="tbl-wrap"><table class="dtbl" id="allDonorsTable"></table></div>
+      </div>
+    </div>
+
+    <!-- ── REQUESTS PANEL ── -->
+    <div class="admin-panel" id="panel-adminRequests">
+      <div class="admin-card admin-full">
+        <h3>🚨 All Blood Requests</h3>
+        <div class="tbl-wrap"><table class="dtbl" id="allRequestsTable"></table></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════ DONOR DETAIL MODAL ════════════════ -->
+<div class="modal-bg" id="donorModal">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+/* ────────────────────────────────────────────
+   DATA STORE
+──────────────────────────────────────────── */
+const bloodData = [
+  { group:'A+',  units:142, donors:3800, status:'good'     },
+  { group:'A-',  units:28,  donors:420,  status:'low'      },
+  { group:'B+',  units:185, donors:4100, status:'good'     },
+  { group:'B-',  units:12,  donors:310,  status:'critical' },
+  { group:'O+',  units:220, donors:5200, status:'good'     },
+  { group:'O-',  units:18,  donors:280,  status:'critical' },
+  { group:'AB+', units:67,  donors:1200, status:'good'     },
+  { group:'AB-', units:9,   donors:170,  status:'critical' },
+];
+
+const donors = [
+  { id:1,  name:'Rahul Sharma',    age:30, blood:'O+',  city:'Mumbai',    state:'Maharashtra', phone:'+91 98201 44312', lastDonated:'2024-11-15', donations:7,  status:'available',  lat:19.076,  lng:72.877,  pledge:'I am always ready to donate O+ blood. Call me anytime!' },
+  { id:2,  name:'Priya Verma',     age:26, blood:'B+',  city:'Delhi',     state:'Delhi',       phone:'+91 98112 55021', lastDonated:'2025-01-10', donations:4,  status:'cooldown',   lat:28.704,  lng:77.102,  pledge:'Happy to donate B+ whenever needed near Delhi NCR.' },
+  { id:3,  name:'Arjun Nair',      age:34, blood:'A-',  city:'Bangalore', state:'Karnataka',   phone:'+91 97408 33110', lastDonated:'2024-09-20', donations:10, status:'available',  lat:12.971,  lng:77.594,  pledge:'A- is rare. Please contact me immediately if needed.' },
+  { id:4,  name:'Sunita Patel',    age:29, blood:'AB+', city:'Ahmedabad', state:'Gujarat',     phone:'+91 94278 65430', lastDonated:'2024-12-05', donations:3,  status:'available',  lat:23.022,  lng:72.571,  pledge:'Universal receiver AB+ — ready to donate anytime in Gujarat.' },
+  { id:5,  name:'Mohammed Iqbal',  age:38, blood:'O-',  city:'Hyderabad', state:'Telangana',   phone:'+91 99895 12034', lastDonated:'2024-10-30', donations:12, status:'available',  lat:17.385,  lng:78.486,  pledge:'O- universal donor. Emergency calls welcome 24x7.' },
+  { id:6,  name:'Kavya Reddy',     age:24, blood:'B-',  city:'Chennai',   state:'Tamil Nadu',  phone:'+91 98409 77234', lastDonated:'2025-02-01', donations:2,  status:'cooldown',   lat:13.082,  lng:80.270,  pledge:'B- donor based in Chennai. Happy to donate when eligible.' },
+  { id:7,  name:'Deepak Joshi',    age:42, blood:'A+',  city:'Pune',      state:'Maharashtra', phone:'+91 97655 44210', lastDonated:'2024-08-14', donations:16, status:'available',  lat:18.520,  lng:73.856,  pledge:'A+ donor for 15+ years. Always available for emergency.' },
+  { id:8,  name:'Anjali Singh',    age:31, blood:'O+',  city:'Lucknow',   state:'Uttar Pradesh',phone:'+91 92531 88044',lastDonated:'2024-12-22', donations:5,  status:'available',  lat:26.846,  lng:80.946,  pledge:'Ready to donate O+ anywhere in UP at short notice.' },
+  { id:9,  name:'Suresh Kumar',    age:45, blood:'B+',  city:'Kolkata',   state:'West Bengal', phone:'+91 98300 21345', lastDonated:'2025-01-28', donations:9,  status:'cooldown',   lat:22.572,  lng:88.363,  pledge:'Proud to be a regular B+ donor. Contact for urgent needs.' },
+  { id:10, name:'Meera Iyer',      age:27, blood:'AB-', city:'Kochi',     state:'Kerala',      phone:'+91 94956 33210', lastDonated:'2024-07-10', donations:3,  status:'available',  lat:9.931,   lng:76.267,  pledge:'AB- is very rare. I am available in Kochi. Please reach out.' },
+  { id:11, name:'Vikram Chauhan',  age:36, blood:'O-',  city:'Jaipur',    state:'Rajasthan',   phone:'+91 98291 55671', lastDonated:'2024-11-03', donations:8,  status:'available',  lat:26.912,  lng:75.787,  pledge:'Universal O- donor based in Jaipur. 24x7 available.' },
+  { id:12, name:'Pooja Bhat',      age:23, blood:'A+',  city:'Mangalore', state:'Karnataka',   phone:'+91 82238 44010', lastDonated:'2025-02-15', donations:1,  status:'cooldown',   lat:12.914,  lng:74.856,  pledge:'First-time donor, happy to help whenever I am eligible again.' },
+  { id:13, name:'Arun Mishra',     age:50, blood:'B+',  city:'Bhopal',    state:'Madhya Pradesh',phone:'+91 98268 77230',lastDonated:'2024-09-09', donations:20, status:'available',  lat:23.259,  lng:77.412,  pledge:'20 donations and counting! B+ donor for life.' },
+  { id:14, name:'Ritu Gupta',      age:33, blood:'A-',  city:'Chandigarh',state:'Punjab',      phone:'+91 98152 30445', lastDonated:'2024-06-20', donations:6,  status:'available',  lat:30.733,  lng:76.779,  pledge:'A- rare donor in Chandigarh. Emergency calls welcome.' },
+  { id:15, name:'Sanjay Das',      age:40, blood:'O+',  city:'Guwahati',  state:'Assam',       phone:'+91 98540 12344', lastDonated:'2024-12-30', donations:11, status:'cooldown',   lat:26.144,  lng:91.736,  pledge:'O+ regular donor in Assam. Always ready to help.' },
+];
+
+const requests = [
+  { id:'REQ001', patient:'Ananya Khanna',   blood:'B-',  hospital:'AIIMS Delhi',              city:'Delhi',     units:2, urgency:'urgent',  status:'pending',   time:'2 hours ago',  contact:'+91 98110 44321', details:'Post-surgery blood requirement urgently needed' },
+  { id:'REQ002', patient:'Ravi Menon',      blood:'O-',  hospital:'Kokilaben Hospital',        city:'Mumbai',    units:3, urgency:'urgent',  status:'pending',   time:'4 hours ago',  contact:'+91 98201 77654', details:'Accident victim. Critical condition.' },
+  { id:'REQ003', patient:'Shyla Thomas',    blood:'AB-', hospital:'CMC Vellore',               city:'Vellore',   units:1, urgency:'normal',  status:'pending',   time:'1 day ago',    contact:'+91 94210 33412', details:'Planned surgery next week' },
+  { id:'REQ004', patient:'Tariq Ahmed',     blood:'A-',  hospital:'Apollo Hyderabad',          city:'Hyderabad', units:2, urgency:'urgent',  status:'pending',   time:'6 hours ago',  contact:'+91 99890 22310', details:'Dialysis patient, recurring need' },
+  { id:'REQ005', patient:'Geeta Sharma',    blood:'O+',  hospital:'Fortis Gurugram',           city:'Gurugram',  units:4, urgency:'normal',  status:'fulfilled', time:'2 days ago',   contact:'+91 97178 55430', details:'Child cancer patient, chemotherapy support' },
+  { id:'REQ006', patient:'Manoj Pillai',    blood:'B+',  hospital:'Amrita Hospital, Kochi',    city:'Kochi',     units:2, urgency:'normal',  status:'pending',   time:'12 hours ago', contact:'+91 94956 88210', details:'Road accident, stable condition' },
+  { id:'REQ007', patient:'Nisha Rajput',    blood:'A+',  hospital:'SMS Hospital Jaipur',       city:'Jaipur',    units:1, urgency:'normal',  status:'fulfilled', time:'3 days ago',   contact:'+91 98291 44102', details:'Childbirth complication, recovering' },
+  { id:'REQ008', patient:'Bhushan Tiwari',  blood:'B-',  hospital:'KGMU Lucknow',              city:'Lucknow',   units:3, urgency:'urgent',  status:'pending',   time:'1 hour ago',   contact:'+91 92531 22110', details:'Heart surgery scheduled for tomorrow' },
+];
+
+// Notifications store (new requests/donors added via forms)
+let notifications = [];
+
+/* ────────────────────────────────────────────
+   HERO PILLS
+──────────────────────────────────────────── */
+function renderHeroPills() {
+  const max = Math.max(...bloodData.map(d=>d.units));
+  const pills = document.getElementById('heroPills');
+  pills.innerHTML = bloodData.map((d,i) => `
+    <div class="hero-pill" style="animation-delay:${i*0.08}s">
+      <span class="pill-name">${d.group}</span>
+      <div class="pill-bar-wrap"><div class="pill-bar" style="width:${Math.round(d.units/max*100)}%"></div></div>
+      <span class="pill-units">${d.units} units</span>
+    </div>`).join('');
+}
+
+/* ────────────────────────────────────────────
+   BLOOD GRID
+──────────────────────────────────────────── */
+function renderBloodGrid() {
+  const grid = document.getElementById('bloodGrid');
+  const statusMap = { good:'s-good', low:'s-low', critical:'s-crit' };
+  const labelMap  = { good:'Sufficient', low:'Low Stock', critical:'Critical' };
+  grid.innerHTML = bloodData.map(d => `
+    <div class="blood-card ${d.status==='critical'?'critical':''}">
+      <div class="bc-group">${d.group}</div>
+      <div class="bc-units">${d.units}</div>
+      <div class="bc-label">Units Available</div>
+      <span class="bc-status ${statusMap[d.status]}">${labelMap[d.status]}</span>
+    </div>`).join('');
+}
+
+/* ────────────────────────────────────────────
+   CHARTS
+──────────────────────────────────────────── */
+function renderCharts() {
+  const labels = bloodData.map(d=>d.group);
+  const units  = bloodData.map(d=>d.units);
+  const donorCounts = bloodData.map(d=>d.donors);
+  const colors = ['#C0000A','#E03200','#FF2D3B','#D4A853','#1A7A4A','#1565C0','#5E35B1','#00838F'];
+  const barColors = units.map(u => u < 20 ? '#E03200' : u < 50 ? '#D4A853' : '#C0000A');
+
+  new Chart(document.getElementById('barChart'), {
+    type:'bar',
+    data:{ labels, datasets:[{ data:units, backgroundColor:barColors, borderRadius:6, borderSkipped:false }] },
+    options:{ responsive:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, grid:{color:'rgba(0,0,0,.05)'} }, x:{ grid:{display:false} } } }
+  });
+
+  new Chart(document.getElementById('donutChart'), {
+    type:'doughnut',
+    data:{ labels, datasets:[{ data:donorCounts, backgroundColor:colors, borderWidth:2, borderColor:'#FFF8F0' }] },
+    options:{ responsive:true, plugins:{ legend:{ position:'right', labels:{ font:{size:11}, padding:10 } } }, cutout:'62%' }
+  });
+}
+
+function renderAdminCharts() {
+  const labels = bloodData.map(d=>d.group);
+  const units  = bloodData.map(d=>d.units);
+  const donorCounts = bloodData.map(d=>d.donors);
+  const colors = ['#C0000A','#E03200','#FF2D3B','#D4A853','#1A7A4A','#1565C0','#5E35B1','#00838F'];
+  const barColors = units.map(u => u < 20 ? '#E03200' : u < 50 ? '#D4A853' : '#C0000A');
+
+  new Chart(document.getElementById('adminBarChart'), {
+    type:'bar',
+    data:{ labels, datasets:[{ data:units, backgroundColor:barColors, borderRadius:5, borderSkipped:false }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{ y:{ beginAtZero:true, grid:{color:'rgba(255,255,255,.04)'}, ticks:{color:'rgba(255,255,255,.4)'} }, x:{ grid:{display:false}, ticks:{color:'rgba(255,255,255,.4)'} } } }
+  });
+
+  new Chart(document.getElementById('adminDonutChart'), {
+    type:'doughnut',
+    data:{ labels, datasets:[{ data:donorCounts, backgroundColor:colors, borderWidth:2, borderColor:'#141420' }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'right', labels:{ color:'rgba(255,255,255,.6)', font:{size:10}, padding:8 } } }, cutout:'60%' }
+  });
+}
+
+/* ────────────────────────────────────────────
+   REQUESTS GRID
+──────────────────────────────────────────── */
+function renderRequests() {
+  const grid = document.getElementById('requestsGrid');
+  grid.innerHTML = requests.slice(0,8).map(r => `
+    <div class="req-card ${r.urgency}">
+      <div class="req-blood">${r.blood}</div>
+      <div class="req-info">
+        <h4>${r.patient}</h4>
+        <div class="req-meta">
+          <span>🏥 ${r.hospital}</span>
+          <span>📍 ${r.city}</span>
+          <span>${r.units} unit(s)</span>
+        </div>
+        <div class="req-tags">
+          <span class="tag ${r.urgency==='urgent'?'t-urgent':'t-normal'}">${r.urgency==='urgent'?'🚨 URGENT':'📅 Normal'}</span>
+          <span class="tag t-city">${r.city}</span>
+          ${r.status==='fulfilled'?'<span class="tag t-fulfilled">✅ Fulfilled</span>':''}
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ────────────────────────────────────────────
+   PLEDGE WALL
+──────────────────────────────────────────── */
+function renderPledges() {
+  const grid = document.getElementById('pledgeGrid');
+  grid.innerHTML = donors.slice(0,6).map(d => `
+    <div class="pledge-card">
+      <div class="pledge-header">
+        <div class="pledge-av">${d.name.charAt(0)}</div>
+        <div>
+          <div class="pledge-name">${d.name}</div>
+          <div class="pledge-city">📍 ${d.city}, ${d.state}</div>
+        </div>
+        <div class="pledge-bg">${d.blood}</div>
+      </div>
+      <p class="pledge-msg">"${d.pledge}"</p>
+      <div class="pledge-footer">
+        <span class="pledge-date">Last: ${d.lastDonated}</span>
+        <span class="pledge-donated">🩸 ${d.donations} donations</span>
+      </div>
+    </div>`).join('');
+}
+
+/* ────────────────────────────────────────────
+   MAP SIDEBAR
+──────────────────────────────────────────── */
+function renderMapSidebar() {
+  const sb = document.getElementById('mapSidebar');
+  sb.innerHTML = donors.map(d => `
+    <div class="mdc">
+      <div class="mdc-blood">${d.blood}</div>
+      <div>
+        <div class="mdc-name">${d.name}</div>
+        <div class="mdc-city">📍 ${d.city}</div>
+      </div>
+      <span class="mdc-badge ${d.status==='available'?'b-avail':'b-cool'}">${d.status==='available'?'Available':'Cooldown'}</span>
+    </div>`).join('');
+}
+
+/* ────────────────────────────────────────────
+   COUNTER ANIMATION
+──────────────────────────────────────────── */
+function animateCounter(el, target, suffix='') {
+  let count = 0;
+  const step = Math.ceil(target / 60);
+  const t = setInterval(() => {
+    count = Math.min(count+step, target);
+    el.textContent = count.toLocaleString('en-IN') + suffix;
+    if (count >= target) clearInterval(t);
+  }, 24);
+}
+
+/* ────────────────────────────────────────────
+   FORM — REGISTER DONOR
+──────────────────────────────────────────── */
+function registerDonor() {
+  const name  = document.getElementById('dName').value.trim();
+  const age   = document.getElementById('dAge').value;
+  const blood = document.getElementById('dBlood').value;
+  const city  = document.getElementById('dCity').value.trim();
+  const state = document.getElementById('dState').value;
+  const phone = document.getElementById('dPhone').value.trim();
+  const pledge= document.getElementById('dPledge').value.trim();
+
+  if(!name||!age||!blood||!city||!state||!phone) {
+    showToast('⚠️ Please fill all required fields.', true); return;
+  }
+
+  const newDonor = {
+    id: donors.length+1, name, age:parseInt(age), blood, city, state, phone,
+    lastDonated: '—', donations:0, status:'available',
+    lat:19.076, lng:72.877,
+    pledge: pledge || `I am ready to donate ${blood} blood anytime. Please contact me.`
+  };
+  donors.push(newDonor);
+
+  // Push admin notification
+  pushNotification({
+    type:'donor', title:`New Donor: ${name}`, detail:`${blood} • ${city}, ${state} • ${phone}`,
+    time: 'Just now', raw: newDonor
+  });
+
+  showToast(`✅ Thank you, ${name}! You're now registered as a ${blood} donor.`);
+  ['dName','dAge','dCity','dPhone','dPledge'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('dBlood').value='';
+  document.getElementById('dState').value='';
+}
+
+/* ────────────────────────────────────────────
+   FORM — RAISE REQUEST
+──────────────────────────────────────────── */
+function raiseRequest() {
+  const patient  = document.getElementById('rName').value.trim();
+  const blood    = document.getElementById('rBlood').value;
+  const units    = document.getElementById('rUnits').value;
+  const hospital = document.getElementById('rHospital').value.trim();
+  const city     = document.getElementById('rCity').value.trim();
+  const urgency  = document.getElementById('rUrgency').value;
+  const phone    = document.getElementById('rPhone').value.trim();
+  const details  = document.getElementById('rDetails').value.trim();
+
+  if(!patient||!blood||!units||!hospital||!city||!phone) {
+    showToast('⚠️ Please fill all required fields.', true); return;
+  }
+
+  const newReq = {
+    id:`REQ${String(requests.length+1).padStart(3,'0')}`,
+    patient, blood, units:parseInt(units), hospital, city, urgency,
+    status:'pending', time:'Just now', contact:phone, details
+  };
+  requests.unshift(newReq);
+
+  // Push admin notification ← KEY FEATURE
+  pushNotification({
+    type:'request',
+    title:`🚨 New Blood Request: ${blood}`,
+    detail:`${patient} at ${hospital}, ${city} — ${urgency.toUpperCase()} — ${units} unit(s)`,
+    time:'Just now',
+    raw: newReq
+  });
+
+  renderRequests();
+  showToast(`✅ Request submitted! Admin has been notified. We will match a ${blood} donor near ${city} immediately.`);
+  ['rName','rUnits','rHospital','rCity','rPhone','rDetails'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('rBlood').value='';
+}
+
+/* ────────────────────────────────────────────
+   NOTIFICATIONS ENGINE
+──────────────────────────────────────────── */
+function pushNotification(notif) {
+  notifications.unshift(notif);
+  updateNotifBadge();
+  renderAllNotifications();
+}
+
+function updateNotifBadge() {
+  const count = notifications.length;
+  const badge = document.getElementById('notifBadge');
+  const stat  = document.getElementById('aStat4');
+  badge.textContent = count;
+  badge.classList.toggle('visible', count > 0);
+  if(stat) stat.textContent = count;
+}
+
+function renderAllNotifications() {
+  const list1 = document.getElementById('overviewNotifList');
+  const list2 = document.getElementById('allNotifList');
+  const panel = document.getElementById('overviewNotifPanel');
+  const label = document.getElementById('notifCountLabel');
+
+  const html = notifications.length === 0
+    ? '<div style="color:rgba(255,255,255,.3);font-size:.88rem;padding:14px 0">No new notifications.</div>'
+    : notifications.map((n,i) => `
+      <div class="notif-item new" id="notif-${i}">
+        <div class="notif-dot"></div>
+        <div class="notif-text">
+          <strong>${n.title}</strong>
+          <span>${n.detail}</span>
+        </div>
+        <span class="notif-time">${n.time}</span>
+        <button class="notif-dismiss" onclick="dismissNotif(${i})" title="Dismiss">✕</button>
+      </div>`).join('');
+
+  if(list1) list1.innerHTML = html;
+  if(list2) list2.innerHTML = html;
+  if(panel) panel.classList.toggle('has-notifs', notifications.length > 0);
+  if(label) label.textContent = `${notifications.length} new notification${notifications.length!==1?'s':''}`;
+}
+
+function dismissNotif(i) {
+  notifications.splice(i,1);
+  updateNotifBadge();
+  renderAllNotifications();
+}
+
+/* ────────────────────────────────────────────
+   ADMIN DASHBOARD
+──────────────────────────────────────────── */
+function openAdmin() {
+  document.getElementById('adminPage').classList.add('open');
+  document.body.style.overflow='hidden';
+  renderAdminTables();
+  setTimeout(renderAdminCharts, 100);
+  updateNotifBadge();
+  renderAllNotifications();
+  updateClock();
+}
+
+function closeAdmin() {
+  document.getElementById('adminPage').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function switchTab(id, el) {
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.atab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='donors') renderAllDonorsTable();
+  if(id==='adminRequests') renderAllRequestsTable();
+}
+
+function renderAdminTables() {
+  const recent = document.getElementById('recentDonorsTable');
+  if(!recent) return;
+  recent.innerHTML = `<thead><tr><th>Name</th><th>Blood</th><th>City</th><th>Phone</th><th>Donations</th><th>Status</th><th>Action</th></tr></thead>
+  <tbody>${donors.slice(0,5).map(d=>`<tr>
+    <td class="td-name">${d.name}</td>
+    <td class="td-blood">${d.blood}</td>
+    <td>📍 ${d.city}</td>
+    <td>${d.phone}</td>
+    <td>🩸 ${d.donations}</td>
+    <td><span class="tdg ${d.status==='available'?'tdg-active':'tdg-pending'}">${d.status}</span></td>
+    <td><button class="act-btn" onclick="openDonorModal(${d.id})">View</button></td>
+  </tr>`).join('')}</tbody>`;
+}
+
+function renderAllDonorsTable() {
+  const tbl = document.getElementById('allDonorsTable');
+  if(!tbl) return;
+  tbl.innerHTML = `<thead><tr><th>#</th><th>Name</th><th>Age</th><th>Blood</th><th>City</th><th>State</th><th>Phone</th><th>Last Donated</th><th>Donations</th><th>Status</th><th>Action</th></tr></thead>
+  <tbody>${donors.map((d,i)=>`<tr>
+    <td style="color:rgba(255,255,255,.3)">${i+1}</td>
+    <td class="td-name">${d.name}</td>
+    <td>${d.age}</td>
+    <td class="td-blood">${d.blood}</td>
+    <td>📍 ${d.city}</td>
+    <td>${d.state}</td>
+    <td>${d.phone}</td>
+    <td>${d.lastDonated}</td>
+    <td>🩸 ${d.donations}</td>
+    <td><span class="tdg ${d.status==='available'?'tdg-active':'tdg-pending'}">${d.status}</span></td>
+    <td>
+      <button class="act-btn" onclick="openDonorModal(${d.id})">Details</button>
+      <a class="act-btn" href="https://wa.me/${d.phone.replace(/\D/g,'')}?text=Hello+${encodeURIComponent(d.name)},+Blood+Bridge+here." target="_blank">WA</a>
+    </td>
+  </tr>`).join('')}</tbody>`;
+}
+
+function renderAllRequestsTable() {
+  const tbl = document.getElementById('allRequestsTable');
+  if(!tbl) return;
+  tbl.innerHTML = `<thead><tr><th>ID</th><th>Patient</th><th>Blood</th><th>Units</th><th>Hospital</th><th>City</th><th>Urgency</th><th>Contact</th><th>Status</th><th>Time</th></tr></thead>
+  <tbody>${requests.map(r=>`<tr>
+    <td style="color:rgba(255,255,255,.3);font-size:.78rem">${r.id}</td>
+    <td class="td-name">${r.patient}</td>
+    <td class="td-blood">${r.blood}</td>
+    <td>${r.units}</td>
+    <td style="font-size:.82rem">${r.hospital}</td>
+    <td>📍 ${r.city}</td>
+    <td><span class="tdg ${r.urgency==='urgent'?'tdg-urgent':'tdg-active'}">${r.urgency}</span></td>
+    <td style="font-size:.82rem">${r.contact}</td>
+    <td><span class="tdg ${r.status==='fulfilled'?'tdg-fulfilled':'tdg-pending'}">${r.status}</span></td>
+    <td style="color:rgba(255,255,255,.35);font-size:.78rem">${r.time}</td>
+  </tr>`).join('')}</tbody>`;
+}
+
+/* ────────────────────────────────────────────
+   DONOR DETAIL MODAL
+──────────────────────────────────────────── */
+const donorHistories = {
+  1: [{date:'2024-11-15',loc:'Mumbai Blood Bank',units:1,center:'Hinduja Hospital'},{date:'2024-08-02',loc:'Mumbai Blood Bank',units:1,center:'Hinduja Hospital'},{date:'2024-04-20',loc:'KEM Hospital Blood Bank',units:1,center:'KEM Hospital'},{date:'2023-12-10',loc:'Nair Hospital',units:1,center:'Nair Hospital'},{date:'2023-07-05',loc:'Mumbai Blood Bank',units:1,center:'Hinduja Hospital'}],
+  2: [{date:'2025-01-10',loc:'AIIMS Delhi',units:1,center:'AIIMS'},{date:'2024-09-15',loc:'Safdarjung Blood Bank',units:1,center:'Safdarjung'},{date:'2024-05-22',loc:'Apollo Delhi',units:1,center:'Apollo'},{date:'2023-11-30',loc:'AIIMS Delhi',units:1,center:'AIIMS'}],
+  3: [{date:'2024-09-20',loc:'Victoria Hospital Bangalore',units:1,center:'Victoria'},{date:'2024-06-01',loc:'Manipal Hospital',units:1,center:'Manipal'},{date:'2024-02-14',loc:'St. Johns Medical',units:1,center:'St. Johns'},{date:'2023-10-28',loc:'Victoria Hospital',units:1,center:'Victoria'},{date:'2023-06-15',loc:'Manipal Hospital',units:1,center:'Manipal'}],
+  5: [{date:'2024-10-30',loc:'Nizam Blood Bank',units:1,center:'Nizam'},{date:'2024-07-14',loc:'KIMS Hyderabad',units:1,center:'KIMS'},{date:'2024-03-22',loc:'Nizam Blood Bank',units:1,center:'Nizam'},{date:'2023-12-05',loc:'Apollo Hyderabad',units:1,center:'Apollo'},{date:'2023-08-19',loc:'Nizam Blood Bank',units:1,center:'Nizam'}],
+  7: [{date:'2024-08-14',loc:'Ruby Hall Clinic',units:1,center:'Ruby Hall'},{date:'2024-05-10',loc:'Sahyadri Hospital',units:1,center:'Sahyadri'},{date:'2024-01-20',loc:'Ruby Hall Clinic',units:1,center:'Ruby Hall'},{date:'2023-10-02',loc:'KEM Pune',units:1,center:'KEM Pune'},{date:'2023-07-18',loc:'Ruby Hall Clinic',units:1,center:'Ruby Hall'}],
+};
+
+function openDonorModal(id) {
+  const d = donors.find(x=>x.id===id);
+  if(!d) return;
+  const hist = donorHistories[id] || [{date:d.lastDonated,loc:`${d.city} Blood Bank`,units:1,center:'Local Blood Bank'}];
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-hdr">
+      <div class="modal-title">Donor Profile</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="donor-profile">
+      <div class="d-av-lg">${d.name.charAt(0)}</div>
+      <div class="d-profile-info">
+        <h3>${d.name}</h3>
+        <div class="meta">Age ${d.age} • ${d.city}, ${d.state} • ${d.phone}</div>
+        <div class="d-tags">
+          <span class="d-tag">${d.blood}</span>
+          <span class="d-tag">${d.status==='available'?'✅ Available':'⏳ Cooldown'}</span>
+          <span class="d-tag">🩸 ${d.donations} Donations</span>
+        </div>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="di"><div class="k">Blood Group</div><div class="v" style="color:var(--red-light);font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700">${d.blood}</div></div>
+      <div class="di"><div class="k">Status</div><div class="v">${d.status==='available'?'✅ Available':'⏳ In Cooldown'}</div></div>
+      <div class="di"><div class="k">City</div><div class="v">📍 ${d.city}, ${d.state}</div></div>
+      <div class="di"><div class="k">Contact</div><div class="v">${d.phone}</div></div>
+      <div class="di"><div class="k">Last Donated</div><div class="v">${d.lastDonated}</div></div>
+      <div class="di"><div class="k">Total Donations</div><div class="v">🩸 ${d.donations} times</div></div>
+    </div>
+    <div class="di" style="margin-bottom:22px"><div class="k">Pledge</div><div class="v" style="font-style:italic;margin-top:4px">"${d.pledge}"</div></div>
+    <div class="history-title">📋 Donation History</div>
+    <div class="timeline">${hist.map(h=>`
+      <div class="tl-item">
+        <h4>${h.date} — ${h.center}</h4>
+        <p>${h.loc} • ${h.units} unit donated</p>
+      </div>`).join('')}
+    </div>
+    <div style="display:flex;gap:10px;margin-top:22px">
+      <a href="https://wa.me/${d.phone.replace(/\D/g,'')}?text=Hello+${encodeURIComponent(d.name)},+Blood+Bridge+here.+We+have+an+urgent+blood+request." target="_blank" class="btn btn-success" style="flex:1;text-align:center">💬 WhatsApp Donor</a>
+      <button class="btn btn-ghost" onclick="closeModal()" style="flex:1">Close</button>
+    </div>`;
+  document.getElementById('donorModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('donorModal').classList.remove('open');
+}
+
+document.getElementById('donorModal').addEventListener('click', function(e) {
+  if(e.target===this) closeModal();
+});
+
+/* ────────────────────────────────────────────
+   TOAST
+──────────────────────────────────────────── */
+let toastTimer;
+function showToast(msg, isError=false) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show' + (isError?' error':'');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
+}
+
+/* ────────────────────────────────────────────
+   ADMIN CLOCK
+──────────────────────────────────────────── */
+function updateClock() {
+  const el = document.getElementById('adminClock');
+  if(!el) return;
+  const now = new Date();
+  el.textContent = now.toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'});
+  setTimeout(updateClock, 30000);
+}
+
+/* ────────────────────────────────────────────
+   INIT
+──────────────────────────────────────────── */
+window.addEventListener('DOMContentLoaded', () => {
+  renderHeroPills();
+  renderBloodGrid();
+  renderCharts();
+  renderRequests();
+  renderPledges();
+  renderMapSidebar();
+
+  // Counter animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        animateCounter(document.getElementById('counterDonors'), 12480);
+        animateCounter(document.getElementById('counterLives'), 3200, '+');
+        animateCounter(document.getElementById('counterCities'), 28);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(document.getElementById('counterDonors'));
+});
+</script>
+</body>
+</html>
